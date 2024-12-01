@@ -1,7 +1,12 @@
 "use client"
+import { useState } from 'react'
 import { useEffect } from 'react'
+import MetricsSection from './MetricsSection'
+import EmailForm from './emailComponent/emailForm'
 
 export default function ClientPage() {
+  const [isEmailFormOpen, setIsEmailFormOpen] = useState(false)
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -24,7 +29,6 @@ export default function ClientPage() {
           <div className="space-x-6">
             <a href="#features" className="hover:text-blue-400 transition-colors">기능</a>
             <a href="#benefits" className="hover:text-blue-400 transition-colors">장점</a>
-            <a href="#contact" className="hover:text-blue-400 transition-colors">문의하기</a>
           </div>
         </div>
       </nav>
@@ -35,14 +39,17 @@ export default function ClientPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-black/50" />
           <div className="text-center z-10 fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              AI로 진화하는<br />회의 문화
+              세상에 없던<br/>단 하나의 AI 기반<br />회의 진단 솔루션
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300">
               더 똑똑하게, 더 효율적으로
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-all transform hover:scale-105">
-              시작하기
-            </button>
+            <a 
+              href="/register"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full text-lg transition-all transform hover:scale-105 hover:shadow-lg"
+            >
+              1개월 무료체험 사전등록
+            </a>
           </div>
         </section>
 
@@ -98,31 +105,14 @@ export default function ClientPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20 px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 fade-in">문의하기</h2>
-            <p className="text-xl text-gray-400 mb-8 fade-in">
-              더 나은 회의 문화를 만들어가는 첫걸음을 시작하세요.
-            </p>
-            <form className="space-y-6 fade-in">
-              <input
-                type="email"
-                placeholder="이메일"
-                className="w-full p-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <textarea
-                placeholder="문의사항"
-                rows="4"
-                className="w-full p-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-all transform hover:scale-105">
-                보내기
-              </button>
-            </form>
-          </div>
-        </section>
+        {/* Metrics Section */}
+        <MetricsSection />
       </main>
+
+      <EmailForm 
+        isOpen={isEmailFormOpen} 
+        onClose={() => setIsEmailFormOpen(false)} 
+      />
 
       <footer className="bg-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
