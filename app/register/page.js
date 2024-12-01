@@ -1,4 +1,5 @@
 import RegisterForm from '../emailComponent/RegisterForm'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Vetter - 사전 등록',
@@ -10,7 +11,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-7xl mx-auto px-4">
         <nav className="py-6">
-          <a href="/" className="text-2xl font-bold">Vetter</a>
+          <Link href="/" className="text-2xl font-bold">Vetter</Link>
         </nav>
         
         <div className="flex min-h-[calc(100vh-88px)]">
