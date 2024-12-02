@@ -26,10 +26,12 @@ export default function ClientPage() {
       <nav className="fixed w-full bg-black bg-opacity-90 z-50 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold">Vetter</div>
-          <div className="space-x-6">
-            <a href="#features" className="hover:text-blue-400 transition-colors">기능</a>
-            <a href="#benefits" className="hover:text-blue-400 transition-colors">장점</a>
-          </div>
+          <a 
+            href="/register"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 py-2 rounded-full text-base transition-all transform hover:scale-105 hover:shadow-lg"
+          >
+            사전등록
+          </a>
         </div>
       </nav>
 
@@ -46,7 +48,7 @@ export default function ClientPage() {
             </p>
             <a 
               href="/register"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full text-lg transition-all transform hover:scale-105 hover:shadow-lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full text-xl md:text-2xl transition-all transform hover:scale-105 hover:shadow-lg inline-block"
             >
               1개월 무료체험 사전등록
             </a>
@@ -89,11 +91,11 @@ export default function ClientPage() {
               {[
                 {
                   title: "시간 절약",
-                  description: "회의 시간 30% 감소"
+                  description: "회의 시간 32% 감소"
                 },
                 {
                   title: "생산성 향상",
-                  description: "팀 생산성 50% 증가"
+                  description: "팀 생산성 27% 증가"
                 }
               ].map((benefit, i) => (
                 <div key={i} className="text-center fade-in">
