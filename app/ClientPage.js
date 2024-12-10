@@ -30,7 +30,7 @@ export default function ClientPage() {
             href="/register"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 py-2 rounded-full text-base transition-all transform hover:scale-105 hover:shadow-lg"
           >
-            사전등록
+            무료체험
           </a>
         </div>
       </nav>
@@ -41,16 +41,16 @@ export default function ClientPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-black/50" />
           <div className="text-center z-10 fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              세상에 없던<br/>단 하나의 AI 기반<br />회의 진단 솔루션
+              <br/>AI 면접관과 함께<br />완벽한 면접 준비
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300">
-              더 똑똑하게, 더 효율적으로
+              합격을 위한 맞춤형 모의면접 솔루션
             </p>
             <a 
               href="/register"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full text-xl md:text-2xl transition-all transform hover:scale-105 hover:shadow-lg inline-block"
             >
-              1개월 무료체험 사전등록
+              첫 면접 무료체험
             </a>
           </div>
         </section>
@@ -62,16 +62,16 @@ export default function ClientPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "실시간 분석",
-                  description: "AI가 회의 내용을 실시간으로 분석하여 핵심 포인트를 추출합니다."
+                  title: "맞춤형 질문 생성",
+                  description: "자기소개서를 기반으로 실제 면접에서 나올 수 있는 예상 질문을 생성합니다."
                 },
                 {
-                  title: "감정 분석",
-                  description: "참여자들의 감정 상태와 참여도를 실시간으로 모니터링합니다."
+                  title: "실시간 피드백",
+                  description: "답변 내용, 목소리 톤, 표정까지 다각도로 분석하여 즉각적인 피드백을 제공합니다."
                 },
                 {
-                  title: "개선 제안",
-                  description: "더 나은 회의를 위한 맞춤형 개선 방안을 제시합니다."
+                  title: "상세 분석 리포트",
+                  description: "면접 전반에 대한 종합 평가와 구체적인 개선점을 제시합니다."
                 }
               ].map((feature, i) => (
                 <div key={i} className="bg-gray-900 p-6 rounded-lg fade-in">
@@ -90,12 +90,12 @@ export default function ClientPage() {
             <div className="grid md:grid-cols-2 gap-12">
               {[
                 {
-                  title: "시간 절약",
-                  description: "회의 시간 32% 감소"
+                  title: "자신감 상승",
+                  description: "면접 불안감 45% 감소"
                 },
                 {
-                  title: "생산성 향상",
-                  description: "팀 생산성 27% 증가"
+                  title: "합격률 향상",
+                  description: "최종 합격률 38% 증가"
                 }
               ].map((benefit, i) => (
                 <div key={i} className="text-center fade-in">

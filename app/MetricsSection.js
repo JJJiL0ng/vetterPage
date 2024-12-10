@@ -8,57 +8,59 @@ const MetricsSection = () => {
 
   const metrics = [
     {
-      id: 'efficiency',
-      title: '회의 효율성 점수',
-      description: '긍정적 행동과 부정적 행동을 분석하여 회의의 전반적인 효율성을 수치화합니다.',
+      id: 'communication',
+      title: '의사소통 능력',
+      description: '질문에 대한 명확한 답변, 논리적인 전달력, 전문용어 활용도를 평가합니다.',
       score: 85,
       color: '#4F46E5'
     },
     {
-      id: 'balance',
-      title: '참여 균형성 지표',
-      description: '참석자들의 발언 시간과 빈도를 분석하여 균형 잡힌 참여도를 측정합니다.',
+      id: 'professional',
+      title: '전문성',
+      description: '직무 관련 지식, 실무 경험, 문제 해결 능력을 종합적으로 평가합니다.',
       score: 78,
       color: '#06B6D4'
     },
     {
-      id: 'conflict',
-      title: '갈등 조정 지수',
-      description: '발생한 갈등 상황에서 조화로운 해결과 중재가 이루어진 비율을 나타냅니다.',
+      id: 'attitude',
+      title: '태도 및 자세',
+      description: '면접 태도, 비언어적 표현, 열정과 적극성을 평가합니다.',
       score: 92,
       color: '#8B5CF6'
     },
     {
-      id: 'focus',
-      title: '논의 이탈률',
-      description: '회의 주제에서 벗어난 발언이나 부적절한 대화의 비율을 측정합니다.',
+      id: 'situation',
+      title: '상황 대처력',
+      description: '예상치 못한 질문이나 압박 상황에서의 대응 능력을 측정합니다.',
       score: 95,
       color: '#EC4899'
     },
     {
-      id: 'participation',
-      title: '참여 활성화 지표',
-      description: '회의 참석자들의 적극적인 참여를 유도하는 상호작용을 측정합니다.',
+      id: 'cultural',
+      title: '조직 적합도',
+      description: '회사의 가치관과 문화에 대한 이해도와 적합성을 평가합니다.',
       score: 88,
       color: '#10B981'
     }
   ];
 
   const sampleData = [
-    { name: '1주차', value: 75 },
-    { name: '2주차', value: 82 },
-    { name: '3주차', value: 88 },
-    { name: '4주차', value: 85 },
-    { name: '5주차', value: 92 }
+    { name: '1차 면접', value: 75 },
+    { name: '2차 면접', value: 82 },
+    { name: '3차 면접', value: 88 },
+    { name: '4차 면접', value: 85 },
+    { name: '5차 면접', value: 92 }
   ];
+
+
 
   return (
     <section className="py-20 px-4 bg-black">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-16 fade-in">
-          AI 회의 평가 지표 예시
+          AI 모의 면접 평가 예시
         </h2>
-        
+
         <div className="grid md:grid-cols-5 gap-4 mb-16">
           {metrics.map((metric) => (
             <div
@@ -71,7 +73,7 @@ const MetricsSection = () => {
                 <h3 className="text-lg font-semibold">{metric.title}</h3>
                 <Info size={20} className="text-gray-400" />
               </div>
-              
+
               <div className="flex items-center justify-center">
                 <div
                   className="relative w-24 h-24 rounded-full flex items-center justify-center"
@@ -115,12 +117,10 @@ const MetricsSection = () => {
 
         <div className="text-center">
           <p className="text-xl text-gray-400 mb-8 fade-in">
-            해당 점수가 나온 대화 내역을 추적해드립니다.
-            핵심 평가기준은 저명한 회의 컨설턴트들의 평가기준이 적용 되었습니다.
+            해당 점수가 나온 답변을 추적해드리고 피드백을 제공합니다. 
+            핵심 평가기준은 저명한 면접 전문가들의 평가기준이 적용 되었습니다.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full text-lg transition-all transform hover:scale-105 hover:shadow-lg">
-            자세히 알아보기
-          </button>
+
         </div>
       </div>
     </section>

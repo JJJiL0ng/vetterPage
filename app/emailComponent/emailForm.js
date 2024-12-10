@@ -2,8 +2,8 @@
 import RegisterForm from './RegisterForm'
 
 export const metadata = {
-  title: 'Vetter - 사전 등록',
-  description: '더 나은 회의 문화를 위한 Vetter의 1개월 무료 체험 사전 등록',
+  title: 'AI 면접 코치 - 무료 체험',
+  description: 'AI 기반 모의 면접 연습 및 피드백 시스템 무료 체험',
 }
 
 export default function RegisterPage() {
@@ -17,9 +17,9 @@ export default function RegisterPage() {
           {/* 왼쪽: 설명 섹션 */}
           <div className="hidden lg:flex lg:w-1/2 flex-col justify-center pr-20">
             <h1 className="text-5xl font-bold mb-8">
-              AI 기반 회의 분석 솔루션<br />
+              AI 면접 코치와 함께하는<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                1개월 무료 체험
+                완벽한 면접 준비
               </span>
             </h1>
             <div className="space-y-6">
@@ -28,8 +28,8 @@ export default function RegisterPage() {
                   <span className="text-blue-400">✓</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">정밀 회의 분석</h3>
-                  <p className="text-gray-400">AI가 회의 내용을 심층 분석하여 핵심 포인트를 추출</p>
+                  <h3 className="font-semibold mb-1">실전같은 모의 면접</h3>
+                  <p className="text-gray-400">직무별 맞춤형 질문과 실시간 피드백 제공</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -37,8 +37,8 @@ export default function RegisterPage() {
                   <span className="text-purple-400">✓</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">분야에 맞는 맞춤형 평가</h3>
-                  <p className="text-gray-400">분야에 맞는 전문 평가를 통해 회의 품질을 평가</p>
+                  <h3 className="font-semibold mb-1">상세한 분석 리포트</h3>
+                  <p className="text-gray-400">답변 품질, 전달력, 전문성 등 다각도 분석</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -46,8 +46,8 @@ export default function RegisterPage() {
                   <span className="text-pink-400">✓</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">피드백 제시</h3>
-                  <p className="text-gray-400">데이터 기반의 회의 개선 방안 제시</p>
+                  <h3 className="font-semibold mb-1">맞춤형 개선 가이드</h3>
+                  <p className="text-gray-400">AI가 제시하는 구체적인 답변 개선 방안</p>
                 </div>
               </div>
             </div>
