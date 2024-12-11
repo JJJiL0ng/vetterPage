@@ -7,6 +7,23 @@ import EmailForm from './emailComponent/emailForm'
 export default function ClientPage() {
   const [isEmailFormOpen, setIsEmailFormOpen] = useState(false)
 
+  const handleGetStarted = (e) => {
+    e.preventDefault()
+    setIsEmailFormOpen(true)
+    
+    // 부드러운 스크롤 애니메이션으로 이메일 폼으로 이동
+    const emailFormSection = document.getElementById('email-form-section')
+    emailFormSection.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -25,13 +42,18 @@ export default function ClientPage() {
     <div className="bg-black min-h-screen text-white">
       <nav className="fixed w-full bg-black bg-opacity-90 z-50 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold">Vetter</div>
-          <a 
-            href="/register"
+          <div 
+            onClick={handleLogoClick}
+            className="text-2xl font-bold cursor-pointer hover:text-gray-300 transition-colors"
+          >
+            Vetter
+          </div>
+          <button 
+            onClick={handleGetStarted}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 py-2 rounded-full text-base transition-all transform hover:scale-105 hover:shadow-lg"
           >
-            무료체험
-          </a>
+            바로 시작하기
+          </button>
         </div>
       </nav>
 
@@ -46,12 +68,12 @@ export default function ClientPage() {
             <p className="text-xl md:text-2xl mb-8 text-gray-300">
               합격을 위한 맞춤형 모의면접 솔루션
             </p>
-            <a 
-              href="/register"
+            <button 
+              onClick={handleGetStarted}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full text-xl md:text-2xl transition-all transform hover:scale-105 hover:shadow-lg inline-block"
             >
-              첫 면접 무료체험
-            </a>
+              바로 시작하기
+            </button>
           </div>
         </section>
 
@@ -109,12 +131,15 @@ export default function ClientPage() {
 
         {/* Metrics Section */}
         <MetricsSection />
-      </main>
 
-      <EmailForm 
-        isOpen={isEmailFormOpen} 
-        onClose={() => setIsEmailFormOpen(false)} 
-      />
+        {/* Email Form Section */}
+        <section id="email-form-section" className="py-20 px-4">
+          <EmailForm 
+            isOpen={isEmailFormOpen} 
+            onClose={() => setIsEmailFormOpen(false)} 
+          />
+        </section>
+      </main>
 
       <footer className="bg-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">

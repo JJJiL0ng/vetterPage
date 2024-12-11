@@ -67,11 +67,37 @@ export default function RegisterForm() {
   return (
     <div className="w-full max-w-md p-8 bg-gray-900/50 rounded-2xl backdrop-blur-sm border border-gray-800">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold mb-4">AI 모의 면접 체험하기</h2>
-        <p className="text-gray-400">
-          지금 등록하시면<br/>
-          <span className="text-blue-400 font-semibold">10회 체험권</span>을 드립니다.
-        </p>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <h2 className="text-2xl font-bold">AI 모의 면접 1일권</h2>
+          <span className="text-blue-500 border border-blue-500 rounded-md px-2 py-0.5 text-sm">BEST</span>
+        </div>
+        
+        <div className="mt-4 mb-6">
+          <span className="text-gray-400 line-through text-lg">20,000원</span>
+          <span className="ml-2 text-xl font-bold text-blue-400">50% 할인</span>
+          <div className="mt-2 text-3xl font-bold">₩10,000</div>
+        </div>
+
+        <div className="text-gray-400 text-sm space-y-2 mb-6">
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+            </svg>
+            <span>자소서 기반 AI 면접 분석 무제한 제공</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+            </svg>
+            <span>분석 및 피드백 자료 무기한 저장 가능</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+            </svg>
+            <span>유효기간: 구매일로부터 1년</span>
+          </div>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -148,12 +174,12 @@ export default function RegisterForm() {
             isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
-          {isSubmitting ? '처리중...' : '무료 체험 신청하기'}
+          {isSubmitting ? '처리중...' : '구매하기'}
         </button>
       </form>
 
       <p className="text-sm text-gray-500 mt-6 text-center">
-        등록하신 연락처로 모의 면접 참여 방법과<br/>
+        등록하신 연락처로 모의 면접 사용 방법과<br/>
         상세 안내사항을 보내드립니다.
       </p>
     </div>
