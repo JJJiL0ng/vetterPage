@@ -41,6 +41,13 @@ const MetricsSection = () => {
       description: '회사의 가치관과 문화에 대한 이해도와 적합성을 평가합니다.',
       score: 88,
       color: '#10B981'
+    },
+    {
+      id: 'preparation',
+      title: '준비성',
+      description: '직무와 회사에 대한 사전 조사, 답변의 구체성과 준비도를 평가합니다.',
+      score: 90,
+      color: '#F59E0B'
     }
   ];
 
@@ -61,28 +68,28 @@ const MetricsSection = () => {
           AI 모의 면접 평가 예시
         </h2>
 
-        <div className="grid md:grid-cols-5 gap-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
           {metrics.map((metric) => (
             <div
               key={metric.id}
-              className="relative bg-gray-900 p-6 rounded-xl cursor-pointer transform transition-all duration-300 hover:scale-105"
+              className="relative bg-gray-900 p-4 sm:p-6 rounded-xl cursor-pointer transform transition-all duration-300 hover:scale-105"
               onMouseEnter={() => setActiveMetric(metric)}
               onMouseLeave={() => setActiveMetric(null)}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">{metric.title}</h3>
-                <Info size={20} className="text-gray-400" />
+                <h3 className="text-base sm:text-lg font-semibold">{metric.title}</h3>
+                <Info size={18} className="text-gray-400" />
               </div>
 
               <div className="flex items-center justify-center">
                 <div
-                  className="relative w-24 h-24 rounded-full flex items-center justify-center"
+                  className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center"
                   style={{
                     background: `conic-gradient(${metric.color} ${metric.score}%, transparent ${metric.score}%, transparent 100%)`
                   }}
                 >
                   <div className="absolute inset-2 bg-gray-800 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold">{metric.score}</span>
+                    <span className="text-xl sm:text-2xl font-bold">{metric.score}</span>
                   </div>
                 </div>
               </div>
