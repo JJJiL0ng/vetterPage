@@ -202,7 +202,7 @@ const MetricsSection = () => {
                 <Info size={18} className="text-gray-400" />
               </div>
 
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center mb-2">
                 <div
                   className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center"
                   style={{
@@ -214,6 +214,10 @@ const MetricsSection = () => {
                   </div>
                 </div>
               </div>
+
+              <p className="text-center text-sm text-gray-400 hover:text-gray-300 md:text-xs">
+                클릭하여 상세 평가 보기
+              </p>
             </div>
           ))}
         </div>
