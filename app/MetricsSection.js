@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Info, X } from 'lucide-react';
 
@@ -164,6 +164,25 @@ const MetricsSection = () => {
     setShowModal(true);
   };
 
+  // 모달이 열릴 때 body 스크롤 제어
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showModal]);
+
+  // 모달 외부 클릭 처리
+  const handleModalClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setShowModal(false);
+    }
+  };
+
   return (
     <section className="py-20 px-4 bg-black">
       <div className="max-w-7xl mx-auto">
@@ -200,7 +219,10 @@ const MetricsSection = () => {
         </div>
 
         {showModal && activeMetric && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+            onClick={handleModalClick}
+          >
             <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-gray-900 rounded-xl p-6 m-4 text-white">
               <button
                 onClick={() => setShowModal(false)}
