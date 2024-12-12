@@ -73,9 +73,9 @@ export default function RegisterForm() {
         </div>
         
         <div className="mt-4 mb-6">
-          <span className="text-gray-400 line-through text-lg">20,000원</span>
+          <span className="text-gray-400 line-through text-lg">19,800원</span>
           <span className="ml-2 text-xl font-bold text-blue-400">50% 할인</span>
-          <div className="mt-2 text-3xl font-bold">₩10,000</div>
+          <div className="mt-2 text-3xl font-bold">₩9,900</div>
         </div>
 
         <div className="text-gray-400 text-sm space-y-2 mb-6">

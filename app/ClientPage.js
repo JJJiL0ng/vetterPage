@@ -13,7 +13,17 @@ export default function ClientPage() {
     
     // 부드러운 스크롤 애니메이션으로 이메일 폼으로 이동
     const emailFormSection = document.getElementById('email-form-section')
-    emailFormSection.scrollIntoView({ behavior: 'smooth' })
+    
+    // 원하는 추가 스크롤 오프셋 값을 조정하세요 (단위: px)
+    // 양수값 = 더 아래로 스크롤
+    // 음수값 = 더 위로 스크롤
+    const scrollOffset = 70 // 이 값을 조정해보세요 (예: 100, -100 등)
+    
+    const elementPosition = emailFormSection.getBoundingClientRect().top + window.pageYOffset
+    window.scrollTo({
+      top: elementPosition + scrollOffset,
+      behavior: 'smooth'
+    })
   }
 
   const handleLogoClick = (e) => {
