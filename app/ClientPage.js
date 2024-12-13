@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import MetricsSection from './MetricsSection'
 import EmailForm from './emailComponent/emailForm'
+import VetterFeature from './vetterFeature'
 
 export default function ClientPage() {
   const [isEmailFormOpen, setIsEmailFormOpen] = useState(false)
@@ -92,62 +93,10 @@ export default function ClientPage() {
         {/* Features Section */}
         <section id="features" className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
-              당신의 완벽한 면접을 설계합니다
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "맞춤형 질문 생성",
-                  description: "자기소개서를 기반으로 실제 면접에서 나올 수 있는 날카로운 예상 질문을 생성합니다."
-                },
-                {
-                  title: "실시간 피드백",
-                  description: "답변 내용, 목소리 톤, 표정까지 다각도로 분석하여 즉각적인 피드백을 제공합니다."
-                },
-                {
-                  title: "상세 분석 리포트",
-                  description: "면접 전반에 대한 종합 평가와 구체적인 개선점을 제시합니다."
-                }
-              ].map((feature, i) => (
-                <div key={i} className="bg-gray-900 p-5 sm:p-6 rounded-lg fade-in">
-                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm sm:text-base">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <VetterFeature />
           </div>
         </section>
 
-        {/* Benefits Section */}
-        {/* <section id="benefits" className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
-              면접 실력이 한계를 넘어섭니다
-            </h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              {[
-                {
-                  title: "자신감 상승",
-                  description: "면접 불안감 45% 감소"
-                },
-                {
-                  title: "합격률 향상",
-                  description: "최종 합격률 38% 증가"
-                }
-              ].map((benefit, i) => (
-                <div key={i} className="text-center fade-in">
-                  <h3 className="text-2xl font-bold mb-4">{benefit.title}</h3>
-                  <p className="text-xl text-gray-400">{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section> */}
 
         {/* Reviews Section */}
         <section id="reviews" className="py-20 px-4">
