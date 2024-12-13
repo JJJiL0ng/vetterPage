@@ -187,7 +187,7 @@ const MetricsSection = () => {
     <section className="py-20 px-4 bg-black">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-16 fade-in">
-          AI 모의 면접 평가 예시
+          VETTER는 이렇게 평가합니다
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
