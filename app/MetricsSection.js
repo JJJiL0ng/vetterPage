@@ -166,13 +166,26 @@ const MetricsSection = () => {
 
   // 모달이 열릴 때 body 스크롤 제어
   useEffect(() => {
+    const handleScroll = (e) => {
+      if (showModal) {
+        e.preventDefault();
+      }
+    };
+
     if (showModal) {
       document.body.style.overflow = 'hidden';
+      document.addEventListener('wheel', handleScroll, { passive: false });
+      document.addEventListener('touchmove', handleScroll, { passive: false });
     } else {
       document.body.style.overflow = 'unset';
+      document.removeEventListener('wheel', handleScroll);
+      document.removeEventListener('touchmove', handleScroll);
     }
+
     return () => {
       document.body.style.overflow = 'unset';
+      document.removeEventListener('wheel', handleScroll);
+      document.removeEventListener('touchmove', handleScroll);
     };
   }, [showModal]);
 
@@ -277,9 +290,8 @@ const MetricsSection = () => {
         )}
 
         <div className="text-center">
-          <p className="text-xl text-gray-400 mb-8 fade-in">
-            해당 점수가 나온 답변을 추적해드리고 피드백을 제공합니다. 
-            핵심 평가기준은 저명한 면접 전문가들의 평가기준이 적용 되었습니다.
+          <p className="text-sm text-gray-400 mb-8 fade-in">
+            평가기준은 저명한 면접 전문가들의 기준이 적용되었습니다.
           </p>
 
         </div>
