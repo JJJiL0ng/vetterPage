@@ -179,7 +179,7 @@ export default function RegisterForm() {
       </form>
 
       <p className="text-sm text-gray-500 mt-6 text-center">
-        등록하신 연락처로 모의 면접 사용 방법과<br/>
+        등록하신 연락처로 vetter ai 모의 면접 사용 방법과<br/>
         상세 안내사항을 보내드립니다.
       </p>
     </div>

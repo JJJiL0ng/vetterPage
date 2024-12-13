@@ -92,7 +92,7 @@ export default function ClientPage() {
         {/* Features Section */}
         <section id="features" className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
+            <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
               당신의 완벽한 면접을 설계합니다
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -152,7 +152,7 @@ export default function ClientPage() {
         {/* Reviews Section */}
         <section id="reviews" className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
+            <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 px-4">
               <span className="block sm:inline">VETTER와 함께</span>{' '}
               <span className="block sm:inline">이미 많은 분들이 성공했습니다</span>
             </h2>
