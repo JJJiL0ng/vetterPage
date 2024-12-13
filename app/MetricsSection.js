@@ -186,7 +186,7 @@ const MetricsSection = () => {
   return (
     <section className="py-20 px-4 bg-black">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-16 fade-in">
+        <h2 className="text-2xl font-bold text-center mb-16 fade-in">
           VETTER는 이렇게 평가합니다
         </h2>
 
