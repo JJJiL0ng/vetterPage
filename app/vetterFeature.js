@@ -4,8 +4,11 @@ import Image from 'next/image';
 
 export default function VetterFeature() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideDirection, setSlideDirection] = useState('right');
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const slideRef = useRef(null);
 
   const minSwipeDistance = 50;
@@ -13,10 +16,17 @@ export default function VetterFeature() {
   const onTouchStart = (e) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
+    setDragOffset(0);
   };
 
   const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    if (!isDragging) return;
+    
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = touchStart - currentTouch;
+    setTouchEnd(currentTouch);
+    setDragOffset(diff);
   };
 
   const onTouchEnd = () => {
@@ -26,10 +36,15 @@ export default function VetterFeature() {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
 
+    setIsDragging(false);
+    setDragOffset(0);
+
     if (isLeftSwipe) {
+      setSlideDirection('right');
       nextSlide();
     }
     if (isRightSwipe) {
+      setSlideDirection('left');
       prevSlide();
     }
   };
@@ -91,10 +106,12 @@ export default function VetterFeature() {
   ];
 
   const nextSlide = () => {
+    setSlideDirection('right');
     setCurrentSlide((prev) => (prev === features.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
+    setSlideDirection('left');
     setCurrentSlide((prev) => (prev === 0 ? features.length - 1 : prev - 1));
   };
 
@@ -105,37 +122,95 @@ export default function VetterFeature() {
       </h2>
       
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
-        <div 
-          className="relative"
-          ref={slideRef}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
+        <div className="relative">
           <div className="mb-1">
-            <div className="relative h-[400px] sm:h-[600px] w-full rounded-xl overflow-hidden">
+            <div className="relative h-[450px] sm:h-[650px] w-full rounded-xl overflow-hidden">
+              <div className="sm:hidden absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/20 to-transparent z-10" />
+              <div className="sm:hidden absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent z-10" />
+              
+              <div className="relative w-full h-full"
+                ref={slideRef}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 transition-all ${isDragging ? 'duration-0' : 'duration-500'} ease-out`}
+                    style={{
+                      transform: `translateX(${
+                        currentSlide === index
+                          ? isDragging ? `calc(-${dragOffset}px)` : '0'
+                          : currentSlide < index
+                          ? '100%'
+                          : '-100%'
+                      })`,
+                      opacity: currentSlide === index ? 1 : 0,
+                      zIndex: currentSlide === index ? 1 : 0,
+                    }}
+                  >
+                    {feature.image ? (
+                      <Image
+                        src={feature.image}
+                        alt={feature.alt}
+                        fill
+                        className="object-contain"
+                        priority={index === 0}
+                        draggable={false}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
+                        <p className="text-gray-400">이미지 준비중</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden">
+            <div className="flex justify-center items-center min-h-[180px]">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`absolute inset-0 transition-opacity duration-500 ${
-                    currentSlide === index ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ pointerEvents: currentSlide === index ? 'auto' : 'none' }}
+                  className={`w-full transition-all ${isDragging ? 'duration-0' : 'duration-500'} ease-out`}
+                  style={{
+                    transform: `translateX(${
+                      currentSlide === index
+                        ? isDragging ? `calc(-${dragOffset}px)` : '0'
+                        : currentSlide < index
+                        ? '100%'
+                        : '-100%'
+                    })`,
+                    opacity: currentSlide === index ? 1 : 0,
+                    position: currentSlide === index ? 'relative' : 'absolute',
+                    inset: 0,
+                  }}
                 >
-                  {feature.image ? (
-                    <Image
-                      src={feature.image}
-                      alt={feature.alt}
-                      fill
-                      className="object-contain"
-                      priority={index === 0}
-                      draggable={false}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
-                      <p className="text-gray-400">이미지 준비중</p>
+                  <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
+                    style={{
+                      backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
+                    }}
+                  >
+                    <div className="text-center">
+                      <div className="flex justify-center items-center mb-2">
+                        {React.cloneElement(feature.icon, {
+                          className: "w-8 h-8 text-blue-400"
+                        })}
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-bold mb-1.5 text-white leading-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm sm:text-base mb-2 text-blue-400 font-medium leading-snug">
+                        {feature.description}
+                      </p>
+                      <p className="text-xs sm:text-sm text-gray-300 leading-tight">
+                        {feature.detail}
+                      </p>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -156,33 +231,7 @@ export default function VetterFeature() {
             </button>
           </div>
 
-          <div className="flex justify-center items-center min-h-[220px] -mt-2">
-            <div
-              className="bg-gray-900/50 p-4 sm:p-6 rounded-xl backdrop-blur-sm w-full max-w-lg transform transition-all duration-500 ease-in-out shadow-lg"
-              style={{
-                backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
-              }}
-            >
-              <div className="text-center">
-                <div className="flex justify-center items-center mb-4">
-                  {React.cloneElement(features[currentSlide].icon, {
-                    className: "w-10 h-10 text-blue-400"
-                  })}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white">
-                  {features[currentSlide].title}
-                </h3>
-                <p className="text-base sm:text-lg mb-4 text-blue-400 font-medium">
-                  {features[currentSlide].description}
-                </p>
-                <p className="text-sm sm:text-base text-gray-300">
-                  {features[currentSlide].detail}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-3 gap-2">
+          <div className="flex justify-center mt-2 gap-2">
             {features.map((_, index) => (
               <button
                 key={index}
