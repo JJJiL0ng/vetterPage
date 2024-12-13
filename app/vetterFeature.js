@@ -149,44 +149,48 @@ export default function VetterFeature() {
           </div>
 
           {/* Feature Card */}
-          <div className="relative overflow-hidden">
-            <div className="flex justify-center items-center min-h-[180px]">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="absolute inset-0 w-full transition-transform duration-300 ease-out"
-                  style={{
-                    transform: `translateX(${
-                      isDragging
-                        ? `calc(${(index - currentSlide) * 100}% - ${dragOffset}px)`
-                        : `${(index - currentSlide) * 100}%`
-                    })`
-                  }}
-                >
-                  <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
+          <div className="relative overflow-hidden min-h-[180px]">
+            <div className="flex justify-center items-center">
+              <div className="relative w-full">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="absolute inset-0 w-full transition-transform duration-300 ease-out"
                     style={{
-                      backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
+                      transform: `translateX(${
+                        isDragging
+                          ? `calc(${(index - currentSlide) * 100}% - ${dragOffset}px)`
+                          : `${(index - currentSlide) * 100}%`
+                      })`,
+                      opacity: currentSlide === index || isDragging ? 1 : 0,
+                      visibility: Math.abs(index - currentSlide) <= 1 ? 'visible' : 'hidden'
                     }}
                   >
-                    <div className="text-center">
-                      <div className="flex justify-center items-center mb-2">
-                        {React.cloneElement(feature.icon, {
-                          className: "w-8 h-8 text-blue-400"
-                        })}
+                    <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
+                      style={{
+                        backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
+                      }}
+                    >
+                      <div className="text-center">
+                        <div className="flex justify-center items-center mb-2">
+                          {React.cloneElement(feature.icon, {
+                            className: "w-8 h-8 text-blue-400"
+                          })}
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-bold mb-1.5 text-white leading-tight">
+                          {feature.title}
+                        </h3>
+                        <p className="text-sm sm:text-base mb-2 text-blue-400 font-medium leading-snug">
+                          {feature.description}
+                        </p>
+                        <p className="text-xs sm:text-sm text-gray-300 leading-tight">
+                          {feature.detail}
+                        </p>
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold mb-1.5 text-white leading-tight">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm sm:text-base mb-2 text-blue-400 font-medium leading-snug">
-                        {feature.description}
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-300 leading-tight">
-                        {feature.detail}
-                      </p>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
