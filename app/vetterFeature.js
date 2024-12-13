@@ -4,57 +4,49 @@ import Image from 'next/image';
 
 export default function VetterFeature() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [slideDirection, setSlideDirection] = useState('right');
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
+  const [touchStart, setTouchStart] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
-  const slideRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
     setIsDragging(true);
     setDragOffset(0);
   };
 
-  const onTouchMove = (e) => {
+  const handleTouchMove = (e) => {
     if (!isDragging) return;
-    
-    const currentTouch = e.targetTouches[0].clientX;
-    const diff = touchStart - currentTouch;
-    setTouchEnd(currentTouch);
+    const currentX = e.touches[0].clientX;
+    const diff = touchStart - currentX;
     setDragOffset(diff);
   };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+
+    const swipeThreshold = 50; // 스와이프 판정 기준값
     
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    if (Math.abs(dragOffset) > swipeThreshold) {
+      if (dragOffset > 0) {
+        // 왼쪽으로 스와이프
+        setCurrentSlide((prev) => (prev === features.length - 1 ? 0 : prev + 1));
+      } else {
+        // 오른쪽으로 스와이프
+        setCurrentSlide((prev) => (prev === 0 ? features.length - 1 : prev - 1));
+      }
+    }
 
     setIsDragging(false);
     setDragOffset(0);
-
-    if (isLeftSwipe) {
-      setSlideDirection('right');
-      nextSlide();
-    }
-    if (isRightSwipe) {
-      setSlideDirection('left');
-      prevSlide();
-    }
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowLeft') {
-        prevSlide();
+        setCurrentSlide(prev => (prev === 0 ? features.length - 1 : prev - 1));
       } else if (e.key === 'ArrowRight') {
-        nextSlide();
+        setCurrentSlide(prev => (prev === features.length - 1 ? 0 : prev + 1));
       }
     };
 
@@ -105,88 +97,70 @@ export default function VetterFeature() {
     }
   ];
 
-  const nextSlide = () => {
-    setSlideDirection('right');
-    setCurrentSlide((prev) => (prev === features.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setSlideDirection('left');
-    setCurrentSlide((prev) => (prev === 0 ? features.length - 1 : prev - 1));
-  };
-
   return (
     <div className="relative bg-transparent">
       <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 px-4">
         당신의 완벽한 면접을 설계합니다
       </h2>
-      
+
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
-        <div className="relative">
+        <div 
+          ref={containerRef}
+          className="relative"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Image Carousel */}
           <div className="mb-1">
             <div className="relative h-[450px] sm:h-[650px] w-full rounded-xl overflow-hidden">
               <div className="sm:hidden absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/20 to-transparent z-10" />
               <div className="sm:hidden absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent z-10" />
               
-              <div className="relative w-full h-full"
-                ref={slideRef}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-              >
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 transition-all ${isDragging ? 'duration-0' : 'duration-500'} ease-out`}
-                    style={{
-                      transform: `translateX(${
-                        currentSlide === index
-                          ? isDragging ? `calc(-${dragOffset}px)` : '0'
-                          : currentSlide < index
-                          ? '100%'
-                          : '-100%'
-                      })`,
-                      opacity: currentSlide === index ? 1 : 0,
-                      zIndex: currentSlide === index ? 1 : 0,
-                    }}
-                  >
-                    {feature.image ? (
-                      <Image
-                        src={feature.image}
-                        alt={feature.alt}
-                        fill
-                        className="object-contain"
-                        priority={index === 0}
-                        draggable={false}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
-                        <p className="text-gray-400">이미지 준비중</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="absolute inset-0 w-full h-full transition-transform duration-300 ease-out"
+                  style={{
+                    transform: `translateX(${
+                      isDragging
+                        ? `calc(${(index - currentSlide) * 100}% - ${dragOffset}px)`
+                        : `${(index - currentSlide) * 100}%`
+                    })`
+                  }}
+                >
+                  {feature.image ? (
+                    <Image
+                      src={feature.image}
+                      alt={feature.alt}
+                      fill
+                      className="object-contain"
+                      priority={index === 0}
+                      draggable={false}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
+                      <p className="text-gray-400">이미지 준비중</p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
+          {/* Feature Card */}
           <div className="relative overflow-hidden">
             <div className="flex justify-center items-center min-h-[180px]">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`w-full transition-all ${isDragging ? 'duration-0' : 'duration-500'} ease-out`}
+                  className="absolute inset-0 w-full transition-transform duration-300 ease-out"
                   style={{
                     transform: `translateX(${
-                      currentSlide === index
-                        ? isDragging ? `calc(-${dragOffset}px)` : '0'
-                        : currentSlide < index
-                        ? '100%'
-                        : '-100%'
-                    })`,
-                    opacity: currentSlide === index ? 1 : 0,
-                    position: currentSlide === index ? 'relative' : 'absolute',
-                    inset: 0,
+                      isDragging
+                        ? `calc(${(index - currentSlide) * 100}% - ${dragOffset}px)`
+                        : `${(index - currentSlide) * 100}%`
+                    })`
                   }}
                 >
                   <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
@@ -216,21 +190,23 @@ export default function VetterFeature() {
             </div>
           </div>
 
+          {/* Navigation Buttons */}
           <div className="hidden sm:flex absolute inset-x-0 top-[45%] -translate-y-1/2 justify-between select-none">
             <button
-              onClick={prevSlide}
+              onClick={() => setCurrentSlide(prev => (prev === 0 ? features.length - 1 : prev - 1))}
               className="p-2 rounded-full hover:bg-gray-800/30 transition-colors"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
             <button
-              onClick={nextSlide}
+              onClick={() => setCurrentSlide(prev => (prev === features.length - 1 ? 0 : prev + 1))}
               className="p-2 rounded-full hover:bg-gray-800/30 transition-colors"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>
           </div>
 
+          {/* Dots */}
           <div className="flex justify-center mt-2 gap-2">
             {features.map((_, index) => (
               <button
