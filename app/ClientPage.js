@@ -99,11 +99,12 @@ export default function ClientPage() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-10 px-4">
+        <section id="features" className="py-10 px-4"> {/* py-20에서 py-10으로 변경 */}
           <div className="max-w-7xl mx-auto">
             <VetterFeature />
           </div>
         </section>
+
 
         {/* Reviews Section */}
         <section id="reviews" className="py-20 px-4">
