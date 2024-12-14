@@ -50,47 +50,15 @@ export default function VetterFeature() {
   ];
 
   return (
-    <div className="relative bg-transparent">
-        {/* 사진 넣을땐"mb-2"> */}
-      <h2 className="text-2xl sm:text-4xl font-bold text-center mb-10 px-4"> 
+    <div className="relative bg-transparent py-16">
+      <h2 className="text-2xl sm:text-4xl font-bold text-center mb-16 px-4">
         당신의 완벽한 면접을 설계합니다
       </h2>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
         <div ref={containerRef} className="relative">
-          {/* Image Carousel */}
-          {/* <div className="mb-0">
-            <div className="relative h-[350px] sm:h-[500px] w-[250px] sm:w-[350px] mx-auto rounded-3xl overflow-hidden">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="absolute inset-0 w-full h-full transition-transform duration-300 ease-out"
-                  style={{
-                    transform: `translateX(${(index - currentSlide) * 100}%)`,
-                    opacity: currentSlide === index ? 1 : 0,
-                    visibility: Math.abs(index - currentSlide) <= 1 ? 'visible' : 'hidden'
-                  }}
-                >
-                  {feature.image ? (
-                    <Image
-                      src={feature.image}
-                      alt={feature.alt}
-                      fill
-                      className="object-contain"
-                      priority={index === 0}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
-                      <p className="text-gray-400">이미지 준비중</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div> */}
-
           {/* Feature Card */}
-          <div className="relative overflow-hidden min-h-[180px] -mt-6">
+          <div className="relative overflow-hidden min-h-[200px]">
             <div className="flex justify-center items-center">
               <div className="relative w-full">
                 {features.map((feature, index) => (
@@ -103,24 +71,24 @@ export default function VetterFeature() {
                       visibility: Math.abs(index - currentSlide) <= 1 ? 'visible' : 'hidden'
                     }}
                   >
-                    <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
+                    <div className="bg-gray-900/50 p-6 sm:p-8 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
                       style={{
                         backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
                       }}
                     >
                       <div className="text-center">
-                        <div className="flex justify-center items-center mb-2">
+                        <div className="flex justify-center items-center mb-4">
                           {React.cloneElement(feature.icon, {
-                            className: "w-8 h-8 text-blue-400"
+                            className: "w-10 h-10 text-blue-400"
                           })}
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold mb-1.5 text-white leading-tight">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white leading-tight">
                           {feature.title}
                         </h3>
-                        <p className="text-sm sm:text-base mb-2 text-blue-400 font-medium leading-snug">
+                        <p className="text-base sm:text-lg mb-4 text-blue-400 font-medium leading-relaxed">
                           {feature.description}
                         </p>
-                        <p className="text-xs sm:text-sm text-gray-300 leading-tight">
+                        <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                           {feature.detail}
                         </p>
                       </div>
@@ -132,26 +100,26 @@ export default function VetterFeature() {
           </div>
 
           {/* Navigation Controls Container */}
-          <div className="flex justify-center items-center -mt-3 gap-4">
+          <div className="flex justify-center items-center mt-8 gap-6">
             {/* Left Button */}
             <button
               onClick={() => setCurrentSlide(prev => (prev === 0 ? features.length - 1 : prev - 1))}
-              className="p-2 rounded-full bg-gray-800/50 hover:bg-gray-800/70 transition-colors"
+              className="p-3 rounded-full bg-gray-800/50 hover:bg-gray-800/70 transition-colors"
               aria-label="이전 슬라이드"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-7 h-7 text-white" />
             </button>
 
             {/* Dots */}
-            <div className="flex justify-center gap-2">
+            <div className="flex justify-center gap-3">
               {features.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
                     currentSlide === index
-                      ? 'bg-blue-400 w-8'
-                      : 'bg-gray-600 w-2 hover:bg-blue-400/50'
+                      ? 'bg-blue-400 w-10'
+                      : 'bg-gray-600 w-2.5 hover:bg-blue-400/50'
                   }`}
                   aria-label={`${index + 1}번 슬라이드로 이동`}
                 />
@@ -161,10 +129,10 @@ export default function VetterFeature() {
             {/* Right Button */}
             <button
               onClick={() => setCurrentSlide(prev => (prev === features.length - 1 ? 0 : prev + 1))}
-              className="p-2 rounded-full bg-gray-800/50 hover:bg-gray-800/70 transition-colors"
+              className="p-3 rounded-full bg-gray-800/50 hover:bg-gray-800/70 transition-colors"
               aria-label="다음 슬라이드"
             >
-              <ChevronRight className="w-6 h-6 text-white" />
+              <ChevronRight className="w-7 h-7 text-white" />
             </button>
           </div>
         </div>
