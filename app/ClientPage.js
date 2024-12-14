@@ -5,22 +5,22 @@ import MetricsSection from './MetricsSection'
 import EmailForm from './emailComponent/emailForm'
 import VetterFeature from './vetterFeature'
 import Comparison from './comparison'
-
+import AppIntro from './intro'
 export default function ClientPage() {
   const [isEmailFormOpen, setIsEmailFormOpen] = useState(false)
 
   const handleGetStarted = (e) => {
     e.preventDefault()
     setIsEmailFormOpen(true)
-    
+
     // 부드러운 스크롤 애니메이션으로 이메일 폼으로 이동
     const emailFormSection = document.getElementById('email-form-section')
-    
+
     // 원하는 추가 스크롤 오프셋 값을 조정하세요 (단위: px)
     // 양수값 = 더 아래로 스크롤
     // 음수값 = 더 위로 스크롤
     const scrollOffset = 70 // 이 값을 조정해보세요 (예: 100, -100 등)
-    
+
     const elementPosition = emailFormSection.getBoundingClientRect().top + window.pageYOffset
     window.scrollTo({
       top: elementPosition + scrollOffset,
@@ -54,13 +54,13 @@ export default function ClientPage() {
     <div className="bg-black min-h-screen text-white">
       <nav className="fixed w-full bg-black bg-opacity-90 z-50 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div 
+          <div
             onClick={handleLogoClick}
             className="text-2xl font-bold cursor-pointer hover:text-gray-300 transition-colors"
           >
             Vetter
           </div>
-          <button 
+          <button
             onClick={handleGetStarted}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1.5 rounded-full text-base transition-all transform hover:scale-105 hover:shadow-lg"
           >
@@ -75,14 +75,14 @@ export default function ClientPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-black/50" />
           <div className="text-center z-10 fade-in">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 px-4 leading-tight">
-              <br className="hidden sm:block"/>
+              <br className="hidden sm:block" />
               AI 면접관과 함께<br />
               완벽한 면접 준비
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-300 px-4">
               합격을 위한 맞춤형 모의면접 솔루션
             </p>
-            <button 
+            <button
               onClick={handleGetStarted}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full text-xl md:text-2xl transition-all transform hover:scale-105 hover:shadow-lg inline-block"
             >
@@ -91,13 +91,19 @@ export default function ClientPage() {
           </div>
         </section>
 
+        {/* Intro Section */}
+        <section id="intro" className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <AppIntro />
+          </div>
+        </section>
+
         {/* Features Section */}
-        <section id="features" className="py-20 px-4">
+        <section id="features" className="py-10 px-4">
           <div className="max-w-7xl mx-auto">
             <VetterFeature />
           </div>
         </section>
-
 
         {/* Reviews Section */}
         <section id="reviews" className="py-20 px-4">
@@ -146,9 +152,9 @@ export default function ClientPage() {
 
         {/* Email Form Section */}
         <section id="email-form-section" className="py-20 px-4">
-          <EmailForm 
-            isOpen={isEmailFormOpen} 
-            onClose={() => setIsEmailFormOpen(false)} 
+          <EmailForm
+            isOpen={isEmailFormOpen}
+            onClose={() => setIsEmailFormOpen(false)}
           />
         </section>
       </main>

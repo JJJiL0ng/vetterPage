@@ -192,7 +192,7 @@ export default function VetterFeature() {
           {/* Feature Card */}
           <div className="relative overflow-hidden min-h-[180px] -mt-6">
             <div className="flex justify-center items-center">
-              <div className="relative w-[250px] sm:w-full">
+              <div className="relative w-full">
                 {features.map((feature, index) => (
                   <div
                     key={index}
@@ -207,7 +207,7 @@ export default function VetterFeature() {
                       visibility: Math.abs(index - currentSlide) <= 1 ? 'visible' : 'hidden'
                     }}
                   >
-                    <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm mx-auto shadow-lg"
+                    <div className="bg-gray-900/50 p-3 sm:p-4 rounded-xl backdrop-blur-sm w-full max-w-lg mx-auto shadow-lg"
                       style={{
                         backgroundImage: 'linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))'
                       }}
