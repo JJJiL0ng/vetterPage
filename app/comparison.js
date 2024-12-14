@@ -11,7 +11,8 @@ const PriceComparison = () => {
             <span className="block sm:inline">AI 면접관과 함께 성장하세요</span>
           </h2>
           <p className="text-gray-400 text-lg">
-            기존 모의면접 학원 대비 합리적인 비용으로 시작하세요
+            <span className="block sm:inline">기존 모의면접 학원 대비</span>{' '}
+            <span className="block sm:inline">합리적인 비용으로 시작하세요</span>
           </p>
         </div>
 
