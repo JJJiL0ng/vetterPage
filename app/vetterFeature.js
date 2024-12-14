@@ -97,6 +97,50 @@ export default function VetterFeature() {
     }
   ];
 
+  const handleGetStarted = (e) => {
+    e.preventDefault()
+    setIsEmailFormOpen(true)
+    
+    const emailFormSection = document.getElementById('email-form-section')
+    
+    // 모바일 디바이스 체크
+    const isMobile = window.innerWidth <= 768
+    
+    // 스크롤 오프셋을 디바이스에 따라 다르게 설정
+    const scrollOffset = isMobile ? 30 : 70
+    
+    // requestAnimationFrame을 사용하여 부드러운 스크롤 구현
+    const elementPosition = emailFormSection.getBoundingClientRect().top + window.pageYOffset
+    const targetPosition = elementPosition + scrollOffset
+    
+    // 스크롤 애니메이션 속도 조절
+    const duration = 1000 // 1초
+    const start = window.pageYOffset
+    const distance = targetPosition - start
+    let startTime = null
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime
+      const timeElapsed = currentTime - startTime
+      const progress = Math.min(timeElapsed / duration, 1)
+      
+      // easeInOutQuad 이징 함수 적용
+      const ease = progress => {
+        return progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2
+      }
+      
+      window.scrollTo(0, start + (distance * ease(progress)))
+      
+      if (progress < 1) {
+        requestAnimationFrame(animation)
+      }
+    }
+    
+    requestAnimationFrame(animation)
+  }
+
   return (
     <div className="relative bg-transparent">
       <h2 className="text-2xl sm:text-4xl font-bold text-center mb-2 px-4">
