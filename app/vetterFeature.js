@@ -60,7 +60,7 @@ export default function VetterFeature() {
       description: "입사 희망 기업을 선택하고 자기소개서를 입력하거나 파일을 첨부하세요.",
       icon: <Upload className="w-12 h-12 mb-6 text-blue-400" />,
       detail: "AI가 귀하의 자기소개서를 철저히 분석하여 맞춤형 면접을 준비합니다.",
-      image: "/images/feature1.png",
+      image: "/featureEx1.png",
       alt: "자기소개서 분석 화면"
     },
     {
@@ -68,7 +68,7 @@ export default function VetterFeature() {
       description: "AI가 기업 특성과 자기소개서를 바탕으로 예상 질문을 생성합니다.",
       icon: <Building2 className="w-12 h-12 mb-6 text-purple-400" />,
       detail: "실제 면접에서 나올 수 있는 날카로운 질문들로 완벽하게 준비하세요.",
-      image: "/images/feature2.png",
+      image: "/featureEx1.png",
       alt: "맞춤형 질문 생성 화면"
     },
     {
@@ -113,7 +113,7 @@ export default function VetterFeature() {
         >
           {/* Image Carousel */}
           <div className="mb-1">
-            <div className="relative h-[450px] sm:h-[650px] w-full rounded-xl overflow-hidden">
+            <div className="relative h-[525px] sm:h-[750px] w-[350px] sm:w-[500px] mx-auto rounded-xl overflow-hidden">
               <div className="sm:hidden absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/20 to-transparent z-10" />
               <div className="sm:hidden absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/20 to-transparent z-10" />
               

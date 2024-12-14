@@ -11,7 +11,7 @@ const PriceComparison = () => {
             <span className="block sm:inline">AI 면접관과 함께 성장하세요</span>
           </h2>
           <p className="text-gray-400 text-lg">
-            기존 모의면접 대비 93% 이상 저렴한 비용으로 시작하세요
+            기존 모의면접 학원 대비 합리적인 비용으로 시작하세요
           </p>
         </div>
 
@@ -59,10 +59,10 @@ const PriceComparison = () => {
             <div className="text-center">
               <h3 className="text-xl font-semibold text-blue-400 mb-6">Vetter AI 모의면접</h3>
               <div className="mb-2">
-                <span className="text-4xl font-bold">₩9,900</span>
+                <span className="text-4xl font-bold">₩19,800</span>
                 <span className="text-gray-300 ml-2">/ 1일 무제한</span>
               </div>
-              <p className="text-blue-400 text-sm mb-8">93% 이상 저렴한 가격</p>
+              <p className="text-blue-400 text-sm mb-8">합리적인 가격</p>
 
               <div className="space-y-4">
                 <div className="flex items-center text-gray-200">
@@ -84,10 +84,6 @@ const PriceComparison = () => {
                   분석 자료 무기한 보관
                 </div>
               </div>
-
-              <button className="mt-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full text-lg transition-all transform hover:scale-105 hover:shadow-lg w-full">
-                지금 바로 시작하기
-              </button>
             </div>
           </div>
         </div>
