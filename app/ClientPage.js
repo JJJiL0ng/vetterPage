@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import MetricsSection from './MetricsSection'
 import EmailForm from './emailComponent/emailForm'
 import VetterFeature from './vetterFeature'
+import Comparison from './comparison'
 
 export default function ClientPage() {
   const [isEmailFormOpen, setIsEmailFormOpen] = useState(false)
@@ -135,6 +136,13 @@ export default function ClientPage() {
 
         {/* Metrics Section */}
         <MetricsSection />
+
+        {/* Comparison Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <Comparison />
+          </div>
+        </section>
 
         {/* Email Form Section */}
         <section id="email-form-section" className="py-20 px-4">
