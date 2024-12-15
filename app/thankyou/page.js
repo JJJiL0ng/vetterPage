@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function RedirectPage() {
   return (
@@ -59,12 +60,12 @@ export default function RedirectPage() {
           </div>
 
           <div className="mt-12">
-            <a
+            <Link
               href="/"
               className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg"
             >
               메인으로 돌아가기
-            </a>
+            </Link>
           </div>
         </div>
       </main>
