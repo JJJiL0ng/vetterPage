@@ -51,7 +51,7 @@ const PriceComparison = () => {
 
           {/* Vetter AI 모의면접 카드 */}
           <div className="relative bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-2xl p-8 border border-blue-500/20 fade-in">
-            <div className="absolute -top-4 right-4">
+            <div className="absolute -top-4 sm:right-4 left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-1.5 rounded-full text-sm">
                 추천
               </span>

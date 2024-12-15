@@ -62,7 +62,7 @@ const MetricsSection = () => {
 
   const evaluationResults = {
     communication: {
-      score: 88,
+      score: 85,
       grade: '우수',
       name: '김**',
       strengths: [
