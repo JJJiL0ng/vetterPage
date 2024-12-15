@@ -1,5 +1,6 @@
 "use client"
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { db } from '../../lib/firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
@@ -7,6 +8,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 console.log('Firestore 인스턴스 확인:', db ? '연결됨' : '연결 안됨')
 
 export default function RegisterForm() {
+  const router = useRouter()
   const [contactInfo, setContactInfo] = useState('')
   const [contactType, setContactType] = useState('email') // 'email' 또는 'phone'
   const [jobCategory, setJobCategory] = useState('')
@@ -45,14 +47,8 @@ export default function RegisterForm() {
         createdAt: serverTimestamp(),
       })
       
-      setSubmitStatus({
-        type: 'success',
-        message: '신청이 완료되었습니다. 안내사항을 보내드리겠습니다!'
-      })
+      router.push('/thankyou')
       
-      setContactInfo('')
-      setJobCategory('')
-
     } catch (error) {
       console.log('Firebase 저장 오류:', error)
       setSubmitStatus({
@@ -168,6 +164,7 @@ export default function RegisterForm() {
         )}
 
         <button
+        
           type="submit"
           disabled={isSubmitting}
           className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg ${
