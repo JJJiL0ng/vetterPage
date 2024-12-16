@@ -65,13 +65,26 @@ export default function RegisterForm() {
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-2 mb-4">
           <h2 className="text-2xl font-bold">AI 모의 면접 1일권</h2>
-          <span className="text-blue-500 border border-blue-500 rounded-md px-2 py-0.5 text-sm">BEST</span>
+          <span className="text-red-500 border border-red-500 rounded-md px-2 py-0.5 text-sm">무료</span>
         </div>
         
+        {/* 기존 가격 정보 주석처리
+  <div className="mt-4 mb-6">
+    <span className="text-gray-400 line-through text-lg">19,800원</span>
+    <span className="ml-2 text-xl font-bold text-blue-400">50% 할인</span>
+    <div className="mt-2 text-3xl font-bold">₩9,900</div>
+  </div>
+  */}
+
         <div className="mt-4 mb-6">
-          <span className="text-gray-400 line-through text-lg">19,800원</span>
-          <span className="ml-2 text-xl font-bold text-blue-400">50% 할인</span>
-          <div className="mt-2 text-3xl font-bold">₩9,900</div>
+          <div className="text-2xl font-bold text-red-400">초특가 이벤트</div>
+          <div className="mt-2 text-xl">
+            <span className="text-gray-400 line-through">19,800원</span>
+            <span className="ml-2 font-bold text-white">→ 무료</span>
+          </div>
+          <div className="mt-2 text-sm text-gray-400">
+            선착순 100명 한정
+          </div>
         </div>
 
         <div className="text-gray-400 text-sm space-y-2 mb-6">
@@ -164,20 +177,19 @@ export default function RegisterForm() {
         )}
 
         <button
-        
           type="submit"
           disabled={isSubmitting}
-          className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg ${
+          className={`w-full bg-gradient-to-r from-red-600 to-pink-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg ${
             isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
-          {isSubmitting ? '처리중...' : '구매하기'}
+          {isSubmitting ? '처리중...' : '무료체험 신청하기'}
         </button>
       </form>
 
       <p className="text-sm text-gray-500 mt-6 text-center">
-        등록하신 연락처로 VETTER 사용 방법과<br/>
-        상세 안내사항을 보내드립니다.
+        등록하신 이메일로 VETTER 무료체험권과<br/>
+        상세 이용방법을 보내드립니다.
       </p>
     </div>
   )
