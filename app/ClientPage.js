@@ -64,7 +64,7 @@ export default function ClientPage() {
             onClick={handleGetStarted}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1.5 rounded-full text-base transition-all transform hover:scale-105 hover:shadow-lg"
           >
-            바로 시작하기
+            무료로 시작하기
           </button>
         </div>
       </nav>
@@ -86,7 +86,7 @@ export default function ClientPage() {
               onClick={handleGetStarted}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full text-xl md:text-2xl transition-all transform hover:scale-105 hover:shadow-lg inline-block"
             >
-              바로 시작하기
+              무료로 시작하기
             </button>
           </div>
         </section>
